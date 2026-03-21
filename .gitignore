@@ -25,3 +25,5 @@ obj/
 # --- OS Trash ---
 Thumbs.db
 .DS_Store
+
+.metadata/
