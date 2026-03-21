@@ -1,0 +1,17 @@
+17:42:56 **** Incremental Build of configuration Debug for project Servo_C ****
+make -j6 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Servo_C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\maink\STM32CubeIDE\workspace_1.19.0\Robot_arm_project_V1\Servo_C\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Servo_C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Servo_C.elf
+ 
+arm-none-eabi-size  Servo_C.elf 
+arm-none-eabi-objdump -h -S Servo_C.elf  > "Servo_C.list"
+   text	   data	    bss	    dec	    hex	filename
+  18728	     92	   2092	  20912	   51b0	Servo_C.elf
+Finished building: default.size.stdout
+ 
+Finished building: Servo_C.list
+ 
+
+17:42:57 Build Finished. 0 errors, 0 warnings. (took 1s.68ms)
+
