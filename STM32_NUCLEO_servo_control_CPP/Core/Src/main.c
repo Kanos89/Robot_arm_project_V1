@@ -18,9 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "servo_driver.h"
 
-#include <string.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -62,7 +60,6 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
 /* USER CODE END 0 */
 
 /**
@@ -98,8 +95,6 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,17 +104,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  char msg[] = "Enter angle (0-180):\r\n";
-	  HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 100);
-
-	  int user_angle = 0;
-	  Get_UART_Angle(&huart2, &user_angle);
-
-	  // Constraints for safety
-	  if(user_angle < 0) user_angle = 0;
-	  if(user_angle > 180) user_angle = 180;
-
-	  Set_Servo_Angle(&htim2, TIM_CHANNEL_1, (uint8_t)user_angle);
   }
   /* USER CODE END 3 */
 }
@@ -222,6 +206,10 @@ static void MX_TIM2_Init(void)
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
